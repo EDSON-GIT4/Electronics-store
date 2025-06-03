@@ -1,0 +1,26 @@
+# Ignorar dependências do Node.js
+node_modules/
+*.user
+*.suo
+bin/*
+obj/*
+
+# Ignorar arquivos de ambiente
+*.env
+*.env.local
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar arquivos gerados pelo IDE
+.idea/
+.vscode/
+.vs/
+
+# Ignorar arquivos de compilação
+dist/
+build/
+
+# Ignorar arquivos de sistema
+.DS_Store
+Thumbs.db
