@@ -32,7 +32,8 @@ namespace StorePessoas
             using (var context = new Connect())
             {
 
-                try{
+                try
+                {
                     using (var input = new Connect())
                     {
 
@@ -49,9 +50,12 @@ namespace StorePessoas
                     }
 
                 }
-                catch (DbUpdateException ex) when (ex.InnerException is PostgresException pgEx && pgEx.SqlState == "23505") 
+                catch (DbUpdateException ex) when (ex.InnerException is PostgresException pgEx && pgEx.SqlState == "23505")
                 {
                     Confirm = 2;
+                }
+                catch (Npgsql.PostgresException ex) when (ex.SqlState == "28P01") {
+                    Confirm = 3;
                 }
 
             }
@@ -64,7 +68,8 @@ namespace StorePessoas
         {
             using (var context = new Connect())
             {
-                try { 
+                try
+                {
                     var EntrarCliente = new Cadastro_clientes();
                     {
                         //Abaixo eu errei ao fazer conparação em texto puro(mude isso em versões futuras)
@@ -76,9 +81,11 @@ namespace StorePessoas
                         }
                     };
                 }
-                catch{
+                catch
+                {
                     Confirm = 2;
                 }
+                
             }
 
         }
