@@ -122,21 +122,24 @@ namespace My_Store
                 BoxSenha.BackColor = Color.LightPink; // Muda a cor de fundo
                 BoxSenha.Focus();
                 MessageBox.Show("Sua senha não pode ser vazia!");
-
+                
             }
             else
             {
                 registro.Password_users = BoxSenha.Text;
                 BoxSenha.BackColor = Color.White;
-                registro.InputRegistration();
-
-                switch (registro.Confirm)
+                if (registro.Name_users != null && registro.Email_users != null && registro.Password_users != null)
                 {
-                    case 0: MessageBox.Show("A operação não iniciou") ; break;
-                    case 1: MessageBox.Show("Sua conta foi criada com sucesso!!") ; break;
-                    case 2: MessageBox.Show("Há um usuário cadastrado com esse email"); break;
-                    
-                }               
+                    registro.InputRegistration();
+
+                    switch (registro.Confirm)
+                    {
+                        case 0: MessageBox.Show("A operação não iniciou"); break;
+                        case 1: MessageBox.Show("Sua conta foi criada com sucesso!!"); break;
+                        case 2: MessageBox.Show("Há um usuário cadastrado com esse email"); break;
+                        case 3: MessageBox.Show("Há algo de errado com o programa, verifique sua conexão"); break;
+                    }
+                }
             }
 
         }
@@ -211,20 +214,22 @@ namespace My_Store
                 BoxEntar2.BackColor = Color.LightPink; // Muda a cor de fundo
                 BoxEntar2.Focus();
                 MessageBox.Show("Você não digitou uma senha!");
-
+                login.Password_users = null;
             }
             else
             {
-                login.Password_users = BoxEntar2.Text;
-                BoxEntar2.BackColor = Color.White;
-                login.InputLogin();
+                if (login.Name_users != null && login.Password_users != null) {
+                    login.Password_users = BoxEntar2.Text;
+                    BoxEntar2.BackColor = Color.White;
+                    login.InputLogin();
 
-                switch (login.Confirm)
-                {
-                    case 0: MessageBox.Show("O usuário e/ou senha digitados incorretamente"); break;
-                    case 1: MessageBox.Show("O usuário existe"); break;
-                    case 2: MessageBox.Show("Há Algo errado com o programa"); break;
+                    switch (login.Confirm)
+                    {
+                        case 0: MessageBox.Show("O usuário e/ou senha digitados incorretamente"); break;
+                        case 1: MessageBox.Show("O usuário existe"); break;
+                        case 2: MessageBox.Show("Há Algo errado com o programa, verifique sua conexão"); break;
 
+                    }
                 }
             }
         }

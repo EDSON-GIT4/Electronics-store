@@ -12,14 +12,17 @@ namespace ConnectDB
 {
     internal class Connect : DbContext
     {
+        
         // DbSets representam as tabelas no banco de dados
         public DbSet<Cadastro_clientes> CadastroC { get;  set; }
+        
 
-
-        //Configura a conexão com o banco de PostgreSQL
+        //Configura a conexão com o banco de PostgreSQL(use variáveis de ambiente)
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            
             optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=pessoas;Username=cadastrar;Password=t446283746527");
+            
         }
     }
 }
