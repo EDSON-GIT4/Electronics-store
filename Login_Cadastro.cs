@@ -2,15 +2,21 @@ using Microsoft.Win32;
 using StorePessoas;
 using System.Diagnostics.CodeAnalysis;
 
+
 namespace My_Store
 {
+    
 
     public partial class Login_Cadastro : Form
     {
 
+        //TelaInicial conta = new TelaInicial();
+
         public Login_Cadastro()
         {
             InitializeComponent();
+            
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -20,6 +26,8 @@ namespace My_Store
             pergunta2.Visible = false;
             login.Visible = false;
             pergunta1.Visible = false;
+
+            SairLogin.Visible = false;
 
             //Visible true button credenciais
             TextEntar.Visible = true;
@@ -44,6 +52,7 @@ namespace My_Store
             pergunta2.Visible = false;
             login.Visible = false;
             pergunta1.Visible = false;
+            SairLogin.Visible = false;
 
             //Visible true button credenciais
 
@@ -64,18 +73,18 @@ namespace My_Store
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
-            
+
 
         }
 
         public void BoxEmail_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void BoxSenha_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void buttonCriar_Click(object sender, EventArgs e)
@@ -112,7 +121,7 @@ namespace My_Store
             {
                 registro.Email_users = BoxEmail.Text;
                 BoxEmail.BackColor = Color.White;
-                
+
 
             }
 
@@ -122,7 +131,7 @@ namespace My_Store
                 BoxSenha.BackColor = Color.LightPink; // Muda a cor de fundo
                 BoxSenha.Focus();
                 MessageBox.Show("Sua senha não pode ser vazia!");
-                
+
             }
             else
             {
@@ -134,16 +143,23 @@ namespace My_Store
 
                     switch (registro.Confirm)
                     {
-                        case 0: MessageBox.Show("A operação não iniciou"); break;
-                        case 1: MessageBox.Show("Sua conta foi criada com sucesso!!"); break;
-                        case 2: MessageBox.Show("Há um usuário cadastrado com esse email"); break;
-                        case 3: MessageBox.Show("Há algo de errado com o programa, verifique sua conexão"); break;
+                        case 0: MessageBox.Show("A operação não iniciou", "FALHA"); break;
+                        case 1: { MessageBox.Show("Sua conta foi criada com sucesso!!", "SUCESSO!");
+                                
+                                this.Close();
+                                
+                                break; 
+                            }
+                        case 2: MessageBox.Show("Há um usuário cadastrado com esse email", "OOPS"); break;
+                        case 3: MessageBox.Show("Há algo de errado com o programa, verifique sua conexão", "SEM CONEXÃO"); break;
                     }
                 }
             }
 
+             
+
         }
-            
+
 
         private void Voltar_Click(object sender, EventArgs e)
         {
@@ -162,6 +178,7 @@ namespace My_Store
 
             buttonEntar.Visible = false;
             Voltar.Visible = false;
+            
 
             //Criar conta: deve ser tudo false 
             TextCriarConta.Visible = false;
@@ -178,6 +195,8 @@ namespace My_Store
             buttonCriar.Visible = false;
             Voltar.Visible = false;
 
+            SairLogin.Visible = true;
+
             //limpar box de cadastro
             BoxNome.Clear();
             BoxEmail.Clear();
@@ -191,7 +210,8 @@ namespace My_Store
 
         private void buttonEntar_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
+            var login = new Login();
+           
 
             //nome
             if (string.IsNullOrWhiteSpace(BoxEntar1.Text))
@@ -214,24 +234,43 @@ namespace My_Store
                 BoxEntar2.BackColor = Color.LightPink; // Muda a cor de fundo
                 BoxEntar2.Focus();
                 MessageBox.Show("Você não digitou uma senha!");
-                login.Password_users = null;
+                //login.Password_users = null;
             }
             else
             {
-                if (login.Name_users != null && login.Password_users != null) {
+                
+               
                     login.Password_users = BoxEntar2.Text;
                     BoxEntar2.BackColor = Color.White;
                     login.InputLogin();
 
                     switch (login.Confirm)
                     {
-                        case 0: MessageBox.Show("O usuário e/ou senha digitados incorretamente"); break;
-                        case 1: MessageBox.Show("O usuário existe"); break;
-                        case 2: MessageBox.Show("Há Algo errado com o programa, verifique sua conexão"); break;
-
+                        case 0: MessageBox.Show("O usuário e/ou senha digitados incorretamente", "ERRO"); break;
+                        case 1: {
+                            MessageBox.Show($"Olá {login.Name_users}, seja bem vindo ");
+                            this.Close(); break;                            
+                        }       
+                        case 2: MessageBox.Show("Há Algo errado com o programa, verifique sua conexão", "AVISO!!"); break;
+                        
                     }
-                }
+
+
+                
             }
+        }
+
+        private void Login_Cadastro_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SairLogin_Click(object sender, EventArgs e)
+        {
+            //TelaInicial telaInicial = new TelaInicial();
+            //ftelaInicial.Visible = true;
+
+            this.Close();
         }
     }
 

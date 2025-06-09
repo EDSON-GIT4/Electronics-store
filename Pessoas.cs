@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Globalization;
-using System.Xml;
+
 using ConnectDB;
 using MappCli;
 using Microsoft.EntityFrameworkCore;
@@ -16,24 +15,29 @@ namespace StorePessoas
         private string email_users;
         private string password_users;
         private byte confirm = 0;  //numero de status
+        //private bool remenber = false;
 
         public string Name_users { get => name_users; set => name_users = value;}
         public string Email_users { get => email_users; set => email_users = value;}
         public string Password_users { get => password_users; set => password_users = value;}
         public byte Confirm { get => confirm; set => confirm = value;}
+        //public bool Remenber { get => remenber; set => remenber = value;}
+
     }
 
-    internal class Registration() : Users    //Users é classe
+    internal class Registration() : Users    //Users é classe abstrata
     {
         
         public void InputRegistration() //Método principal de registro
         {
-            
+
             using (var context = new Connect())
             {
 
                 try
                 {
+                    //Esse using garante que o objeto (Connect no caso) seja automaticamente descartado (disposed)
+                    //quando o bloco terminar, mesmo que ocorra uma exceção.
                     using (var input = new Connect())
                     {
 
@@ -47,6 +51,9 @@ namespace StorePessoas
                         input.CadastroC.Add(NovoCliente); // Adiciona ao contexto
                         input.SaveChanges();             // Persiste no banco
                         Confirm = 1;
+
+                       
+                        
                     }
 
                 }
@@ -78,7 +85,10 @@ namespace StorePessoas
                         if (usuario != null)
                         {
                             Confirm = 1;
+
+                            
                         }
+                       
                     };
                 }
                 catch
@@ -90,4 +100,6 @@ namespace StorePessoas
 
         }
     }
+
+    
 }

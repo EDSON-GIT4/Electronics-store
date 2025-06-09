@@ -46,6 +46,7 @@ partial class Login_Cadastro
         buttonEntar = new Button();
         TextEntar = new Label();
         Voltar = new Button();
+        SairLogin = new Button();
         SuspendLayout();
         // 
         // Titulo
@@ -53,12 +54,12 @@ partial class Login_Cadastro
         Titulo.AutoSize = true;
         Titulo.Font = new Font("Arial Black", 22.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
         Titulo.ForeColor = Color.White;
-        Titulo.Location = new Point(29, 9);
+        Titulo.Location = new Point(19, 9);
         Titulo.Margin = new Padding(10, 0, 10, 0);
         Titulo.Name = "Titulo";
-        Titulo.Size = new Size(398, 108);
+        Titulo.Size = new Size(438, 54);
         Titulo.TabIndex = 0;
-        Titulo.Text = "ELETRONIC BERG\r\n\r\n";
+        Titulo.Text = " BERG ELETRONICS";
         // 
         // login
         // 
@@ -133,6 +134,7 @@ partial class Login_Cadastro
         // 
         BoxNome.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
         BoxNome.Location = new Point(876, 210);
+        BoxNome.MaxLength = 40;
         BoxNome.Name = "BoxNome";
         BoxNome.Size = new Size(340, 34);
         BoxNome.TabIndex = 7;
@@ -155,6 +157,7 @@ partial class Login_Cadastro
         // 
         BoxEmail.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
         BoxEmail.Location = new Point(876, 329);
+        BoxEmail.MaxLength = 40;
         BoxEmail.Name = "BoxEmail";
         BoxEmail.Size = new Size(340, 34);
         BoxEmail.TabIndex = 9;
@@ -177,6 +180,7 @@ partial class Login_Cadastro
         // 
         BoxSenha.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
         BoxSenha.Location = new Point(876, 462);
+        BoxSenha.MaxLength = 16;
         BoxSenha.Name = "BoxSenha";
         BoxSenha.Size = new Size(340, 34);
         BoxSenha.TabIndex = 11;
@@ -210,6 +214,7 @@ partial class Login_Cadastro
         // 
         BoxEntar1.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
         BoxEntar1.Location = new Point(848, 220);
+        BoxEntar1.MaxLength = 40;
         BoxEntar1.Name = "BoxEntar1";
         BoxEntar1.Size = new Size(349, 34);
         BoxEntar1.TabIndex = 16;
@@ -243,6 +248,7 @@ partial class Login_Cadastro
         // 
         BoxEntar2.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
         BoxEntar2.Location = new Point(848, 326);
+        BoxEntar2.MaxLength = 25;
         BoxEntar2.Name = "BoxEntar2";
         BoxEntar2.Size = new Size(340, 34);
         BoxEntar2.TabIndex = 19;
@@ -308,12 +314,24 @@ partial class Login_Cadastro
         Voltar.Visible = false;
         Voltar.Click += Voltar_Click;
         // 
+        // SairLogin
+        // 
+        SairLogin.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        SairLogin.Location = new Point(932, 658);
+        SairLogin.Name = "SairLogin";
+        SairLogin.Size = new Size(205, 41);
+        SairLogin.TabIndex = 23;
+        SairLogin.Text = "VOLTAR";
+        SairLogin.UseVisualStyleBackColor = true;
+        SairLogin.Click += SairLogin_Click;
+        // 
         // Login_Cadastro
         // 
         AutoScaleDimensions = new SizeF(26F, 52F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.Indigo;
-        ClientSize = new Size(1262, 748);
+        ClientSize = new Size(1231, 744);
+        Controls.Add(SairLogin);
         Controls.Add(Voltar);
         Controls.Add(TextEntar);
         Controls.Add(buttonEntar);
@@ -341,6 +359,7 @@ partial class Login_Cadastro
         Icon = (Icon)resources.GetObject("$this.Icon");
         Margin = new Padding(10, 8, 10, 8);
         Name = "Login_Cadastro";
+        Load += Login_Cadastro_Load;
         ResumeLayout(false);
         PerformLayout();
     }
@@ -370,6 +389,7 @@ partial class Login_Cadastro
     private Button buttonEntar;
     private Label TextEntar;
     private Button Voltar;
+    private Button SairLogin;
 }
 
 

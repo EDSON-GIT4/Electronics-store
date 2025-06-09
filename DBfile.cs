@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
-using StorePessoas;
+
 using MappCli;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -13,11 +13,11 @@ namespace ConnectDB
     internal class Connect : DbContext
     {
         
-        // DbSets representam as tabelas no banco de dados
+        // DbSets representam as tabelas no banco de dados, toda nova tabela mapeadada deve vir para cá
         public DbSet<Cadastro_clientes> CadastroC { get;  set; }
         
 
-        //Configura a conexão com o banco de PostgreSQL(use variáveis de ambiente)
+        //Configura a conexão com o banco de PostgreSQL(Tente usar algun tipo de mascara, não expor credenciais)
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             
@@ -27,9 +27,11 @@ namespace ConnectDB
     }
 }
 
-// Mapeamento de tabela com Data Annotations(simples)
+
 namespace MappCli 
 {
+    // Mapeamento de tabela com Data Annotations(simples) [Table("")]
+
     [Table("cadastro_clientes")]
     internal class Cadastro_clientes //Essa classe vai para o DbSet, tem o mesmo nome da tabela no banco de dados
     {
