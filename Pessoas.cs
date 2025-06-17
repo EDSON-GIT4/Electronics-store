@@ -86,6 +86,8 @@ namespace StorePessoas
                         {
                             Confirm = 1;
 
+                            SettingsFile conta = new SettingsFile();
+                            conta.SaveArchive(Name_users, Password_users);
                             
                         }
                        

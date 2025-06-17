@@ -9,13 +9,12 @@ namespace My_Store
 
     public partial class Login_Cadastro : Form
     {
-
-        //TelaInicial conta = new TelaInicial();
+       
+        TelaInicial back = new TelaInicial();
 
         public Login_Cadastro()
         {
             InitializeComponent();
-            
             
         }
 
@@ -206,6 +205,8 @@ namespace My_Store
             BoxEntar1.Clear();
             BoxEntar2.Clear();
 
+           
+
         }
 
         private void buttonEntar_Click(object sender, EventArgs e)
@@ -248,15 +249,13 @@ namespace My_Store
                     {
                         case 0: MessageBox.Show("O usuário e/ou senha digitados incorretamente", "ERRO"); break;
                         case 1: {
+                            //back.retorno = 1;
                             MessageBox.Show($"Olá {login.Name_users}, seja bem vindo ");
                             this.Close(); break;                            
                         }       
                         case 2: MessageBox.Show("Há Algo errado com o programa, verifique sua conexão", "AVISO!!"); break;
                         
                     }
-
-
-                
             }
         }
 
@@ -270,6 +269,7 @@ namespace My_Store
             //TelaInicial telaInicial = new TelaInicial();
             //ftelaInicial.Visible = true;
 
+            //back.retorno = 0;
             this.Close();
         }
     }
